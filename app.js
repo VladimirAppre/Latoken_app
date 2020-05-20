@@ -7,7 +7,7 @@ const MongoStore = require('connect-mongodb-session')(session);
 const mongooose = require('mongoose');
 const port = process.env.port || 3000;
 
-mongooose.connect('mongodb://localhost:27017/xxx', { useNewUrlParser: true, useUnifiedTopology: true });
+mongooose.connect('mongodb://localhost:27017/lettoken', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const indexRouter = require('./routes/index');
 
@@ -45,6 +45,6 @@ app.use((req, res, next) => {
 // Указываем ссылки на роутеры
 app.use('/', indexRouter);
 
-app.listen(process.env.port, () => {
+app.listen(3000, () => {
   console.log('Server is up on port ', process.env.port);
 });
