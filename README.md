@@ -1,4 +1,4 @@
-# Приложение для загрузки фотографий и постинга их в Reddit.
+# Приложение для Latoken.
 
 см slack-imgs and example.xlsx
 
