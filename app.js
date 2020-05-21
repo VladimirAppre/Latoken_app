@@ -55,6 +55,4 @@ app.use((req, res, next) => {
 // Указываем ссылки на роутеры
 app.use('/', indexRouter);
 
-app.listen(3000, () => {
-  console.log('Server is up on port ', process.env.port);
-});
+app.listen(3000);

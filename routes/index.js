@@ -1,32 +1,26 @@
-const { overdone, undone } = require('../drivers');
+const {
+  overdone,
+  undone,
+  overfiveteen,
+  dailydonetasks,
+} = require('../drivers');
 const router = require('express').Router();
+const { Person } = require('../dataBase/models/schemas');
 
 //если залогинен то рендерить indeх (список отделов и форма загрузки файла)
 //если не залогинен - рендерить форму авторизации
 
-const info = {
-  departament: 'CS',
-  email: 'info@mail.ru',
-  role: 'Director',
-  task: 'Be very good man',
-  frequencyDoneYesterday: '50',
-  frequencyPerWeekPlan: '100',
-  timePerTaskMinutes: '60',
-  timePerformed: '50',
-  deviationInMinutes: '30',
-};
-
 //Главное меню (загрузка файлов + список юнитов)
 router.get('/', async (req, res) => {
-  if (!req.session.user) {
-    res.render('login');
-  } else {
-    const depts = await Person.distinct('departament');
-    depts.filter(function (item, pos) {
-      return arr.indexOf(item) == pos;
-    });
-    res.render('index', depts);
-  }
+  // if (!req.session.user) {
+  //   res.render('login');
+  // } else {
+  const depts = await Person.find();
+  depts.filter(function (item, pos) {
+    return depts.indexOf(item) == pos;
+  });
+  res.render('index', depts);
+  // }
 });
 
 //POST загрузка файлов в парсинг
@@ -36,13 +30,16 @@ router.post('/', async (req, res) => {});
 router.get('/:id', async (req, res) => {
   //поиск топ 5
   //топ 5 перевыполненных
-  let overDone = overdone(req.params.id);
-  console.log('BD: Топ 5 перевыполненных: ', overDone);
+  let overDone = await overdone(req.params.id);
+  //console.log('BD: Топ 5 перевыполненных: ', overDone);
   //топ 5 невыполненных
-  let unDone = undone(req.params.id);
-  console.log('BD: Топ 5 невыполненных: ', unDone);
+  let unDone = await undone(req.params.id);
+  //console.log('BD: Топ 5 невыполненных: ', unDone);
   //сколько ежедненвых задач (>4 в неделю) выполнено, сколько дб выполнено
+  let dailyDoneTasks = dailydonetasks(req.params.id);
   //вывести людей которые работали больше 15 часов, или вывести, что таких нет
+  // let overFiveteen = await overfiveteen(req.params.id);
+  // console.log(overFiveteen);
   //для каждого человека вывести сколько часов он работал и сколько задач выполнил
   //вывести сколько людей работало меньше 7 часов
   //для каждого человека вывести сколько часов работал и сколько задач выполнил
