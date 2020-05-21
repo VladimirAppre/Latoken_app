@@ -16,6 +16,13 @@ const info = {
   deviationInMinutes: '30',
 };
 
+router.get('/index', (req, res) => {
+  res.render('index');
+})
+
+router.get('/login', (req, res) => {
+  res.render('login');
+})
 //Главное меню (загрузка файлов + список юнитов)
 router.get('/', async (req, res) => {
   if (!req.session.user) {
