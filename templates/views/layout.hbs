@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <link rel="stylesheet" href="css/starter-template.css">
+  <link rel="stylesheet" href="css/normalize.css">
 
   <!-- JS, Popper.js, and jQuery -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -20,12 +21,12 @@
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
     crossorigin="anonymous"></script>
 
-  <title>Document</title>
+  <title>LatokenApp</title>
 </head>
 
 <body>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">Latoken Report</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
       aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -36,12 +37,9 @@
         <li class="nav-item active">
           <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
+        {{!-- <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
+        </li> --}}
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">Dropdown</a>
@@ -51,31 +49,26 @@
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Login</a>
+        </li>
       </ul>
-      <a href="nav-item nav-link my-2 my-sm-0" href="#">Login</a>
     </div>
   </nav>
 
   <main role="main" class="container">
     <div class="starter-template">
-      <h1>Bootstrap starter template</h1>
-      <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a
-        mostly barebones HTML document.</p>
+      <h1>Quick acces to reports</h1>
+      <p class="lead">Please login to see the reports.</p>
     </div>
 
   </main><!-- /.container -->
 
 
 <div class="container">
-  <div class="row">
+  <div class="rowD">
     <div class="col">
-
-    </div>
-    <div class="col-6">
       {{{body}}}
-    </div>
-    <div class="col">
-
     </div>
   </div>
 </div>

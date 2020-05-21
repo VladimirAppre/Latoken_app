@@ -5,3 +5,30 @@ body {
   padding: 3rem 1.5rem;
   text-align: center;
 }
+
+.signInBtn{
+  line-height: 32px;
+  transition: background-color 0.2s, border 0.2s, color 0.2s;
+  border-radius: .25rem;
+}
+
+.signInBtn:hover,
+.signInBtn:active {
+  background-color: #000;
+  color: rgb(223, 211, 211);
+}
+
+.black {
+  background-color: black;
+  color: white;
+}
+
+.rowS {
+  display: flex;
+  justify-content: center;
+}
+
+.repT {
+  display: flex;
+  justify-content: flex-end;
+}
