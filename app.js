@@ -6,6 +6,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongodb-session')(session);
 const mongooose = require('mongoose');
 
+
 mongooose.connect(
   'mongodb+srv://mikhail:elbrus@cluster0-hjq5d.mongodb.net/test?retryWrites=true&w=majority',
   {
@@ -13,6 +14,7 @@ mongooose.connect(
     useUnifiedTopology: true,
   }
 );
+
 
 const indexRouter = require('./routes/index');
 
