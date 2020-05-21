@@ -10,7 +10,7 @@ const personSchema = new mongoose.Schema({
   frequencyPerWeekPlan: Schema.Types.Mixed,
   timePerTaskMinutes: Schema.Types.Mixed,
   timePerformed: Schema.Types.Mixed,
-  deviationInMinutes: Schema.Types.Mixed,
+  deviationInMinutes: Number,
   createdAt: { type: Date },
 });
 const Person = mongoose.model("Person", personSchema);
