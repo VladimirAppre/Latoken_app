@@ -5,19 +5,27 @@ const path = require('path');
 const session = require('express-session');
 const MongoStore = require('connect-mongodb-session')(session);
 const mongooose = require('mongoose');
-const port = process.env.port || 3000;
 
-mongooose.connect('mongodb://localhost:27017/lettoken', { useNewUrlParser: true, useUnifiedTopology: true });
+
+mongooose.connect(
+  'mongodb+srv://mikhail:elbrus@cluster0-hjq5d.mongodb.net/test?retryWrites=true&w=majority',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
+
 
 const indexRouter = require('./routes/index');
 
 const store = new MongoStore({
   collection: 'sessions',
-  uri: 'mongodb://localhost:27017/xxx',
+  uri:
+    'mongodb+srv://mikhail:elbrus@cluster0-hjq5d.mongodb.net/test?retryWrites=true&w=majority',
 });
 
 // Подключаем handlebars и указываем путь до папки views
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'templates/views'));
 app.set('view engine', 'hbs');
 
 // Подключаем возможность читать формат json на сервере
@@ -28,12 +36,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Настраиваем объект сессии
-app.use(session({
-  secret: 'someSecretWord',
-  resave: false,
-  saveUninitialized: false,
-  store, // указываем хранить сессии в MongoStore
-}));
+app.use(
+  session({
+    secret: 'someSecretWord',
+    resave: false,
+    saveUninitialized: false,
+    store, // указываем хранить сессии в MongoStore
+  })
+);
 
 // Подключаем middleware для проверки сессии пользователя
 app.use((req, res, next) => {
