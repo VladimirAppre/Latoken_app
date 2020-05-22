@@ -1644,3 +1644,8 @@ section {
   color: #fff;
   text-decoration: none;
 }
+
+.table-content {
+  padding-top: 70px;
+  background-color: #f7f7f7;
+}
