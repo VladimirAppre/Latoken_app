@@ -16,8 +16,12 @@ const personSchema = new mongoose.Schema({
 const Person = mongoose.model("Person", personSchema);
 
 const userSchema = new mongoose.Schema({
-  nick: { type: String, required: true, unique: true },
+  login: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  role: { type: String},
+  createdAt: Date,
+
 });
 const User = mongoose.model("User", userSchema);
 

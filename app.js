@@ -5,6 +5,8 @@ const path = require('path');
 const session = require('express-session');
 const MongoStore = require('connect-mongodb-session')(session);
 const mongooose = require('mongoose');
+const indexRouter = require('./routes/index');
+const loginRouter = require('./routes/login');
 
 
 mongooose.connect(
@@ -16,7 +18,6 @@ mongooose.connect(
 );
 
 
-const indexRouter = require('./routes/index');
 
 const store = new MongoStore({
   collection: 'sessions',
@@ -54,7 +55,7 @@ app.use((req, res, next) => {
 
 // Указываем ссылки на роутеры
 app.use('/', indexRouter);
+app.use('/login', loginRouter);
 
-app.listen(3000, () => {
-  console.log('Server is up on port ', process.env.port);
-});
+
+app.listen(3000);
