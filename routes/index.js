@@ -16,6 +16,7 @@ const info = {
   deviationInMinutes: '30',
 };
 
+
 //Главное меню (загрузка файлов + список юнитов)
 router.get('/', async (req, res) => {
   if (!req.session.user) {
