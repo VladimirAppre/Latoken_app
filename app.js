@@ -5,7 +5,7 @@ const path = require('path');
 const session = require('express-session');
 const MongoStore = require('connect-mongodb-session')(session);
 const mongooose = require('mongoose');
-
+const fileUpload = require('express-fileupload');
 
 mongooose.connect(
   'mongodb+srv://mikhail:elbrus@cluster0-hjq5d.mongodb.net/test?retryWrites=true&w=majority',
@@ -14,7 +14,6 @@ mongooose.connect(
     useUnifiedTopology: true,
   }
 );
-
 
 const indexRouter = require('./routes/index');
 
@@ -44,6 +43,8 @@ app.use(
     store, // указываем хранить сессии в MongoStore
   })
 );
+
+app.use(fileUpload());
 
 // Подключаем middleware для проверки сессии пользователя
 app.use((req, res, next) => {

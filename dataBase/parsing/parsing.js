@@ -1,19 +1,22 @@
-const fs = require("fs");
-const mongoose = require("mongoose");
-const { Person } = require("../models/schemas");
-require("dotenv").config;
+const fs = require('fs');
+const mongoose = require('mongoose');
+const { Person } = require('../models/schemas');
+require('dotenv').config;
 
-mongoose.connect(`mongodb+srv://mikhail:${process.env.mikhail_password}@cluster0-hjq5d.mongodb.net/test?retryWrites=true&w=majority`, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(
+  `mongodb+srv://mikhail:elbrus@cluster0-hjq5d.mongodb.net/test?retryWrites=true&w=majority`,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 //mongodb://localhost:27017/latoken
 
 async function parserData(path) {
-  let file = fs.readFileSync(path, "utf8");
+  let file = fs.readFileSync(path, 'utf8');
   function csvToArray(text) {
-    let p = "",
-      row = [""],
+    let p = '',
+      row = [''],
       ret = [row],
       i = 0,
       r = 0,
@@ -23,10 +26,10 @@ async function parserData(path) {
       if ('"' === l) {
         if (s && l === p) row[i] += l;
         s = !s;
-      } else if ("," === l && s) l = row[++i] = "";
-      else if ("\n" === l && s) {
-        if ("\r" === p) row[i] = row[i].slice(0, -1);
-        row = ret[++r] = [(l = "")];
+      } else if (',' === l && s) l = row[++i] = '';
+      else if ('\n' === l && s) {
+        if ('\r' === p) row[i] = row[i].slice(0, -1);
+        row = ret[++r] = [(l = '')];
         i = 0;
       } else row[i] += l;
       p = l;
@@ -41,7 +44,7 @@ async function parserData(path) {
     const dataPerson = clearFile[i];
     const email = dataPerson[3];
 
-    if (typeof email === "string" && email.length > 3) {
+    if (typeof email === 'string' && email.length > 3) {
       const person = new Person({
         departament: dataPerson[0],
         email: dataPerson[3],
@@ -59,4 +62,4 @@ async function parserData(path) {
   }
 }
 
-parserData("../csv/Test task 2 - Person performance.csv");
+parserData('../csv/Test task 2 - Person performance.csv');

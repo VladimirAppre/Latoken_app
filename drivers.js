@@ -1,6 +1,6 @@
 const { Person } = require('./dataBase/models/schemas');
-//Топ 5 выполненных
 
+//Топ 5 выполненных
 async function overdone(data) {
   const overdone = await Person.find({ departament: data })
     .sort({ deviationInMinutes: -1 })
@@ -22,12 +22,12 @@ async function undone(data) {
 //если (Time performed > Frequency per week) задача пере-выполнена за 1 день, вместо недели
 
 async function dailydonetasks(data) {
-  console.log('hello');
+  //console.log('hello');
   const FrequencyPerWeek = await Person.aggregate(
     [{ $group: { _id: `$task`, count: { $sum: 1 } } }],
     function (err, results) {
       // Do something with the results
-      console.log(results);
+      // console.log(results);
     }
   );
   // return dailyTasks;
@@ -37,28 +37,26 @@ async function dailydonetasks(data) {
 //нужно найти все задачи по одному email, сложить их Time performed и разделить на 60
 //вернуть список email, если Time Perfomed > 15
 
-// async function overfiveteen(data) {
-//   const sumArray = await Person.find({ departament: data });
-//   let newArr = [];
-//   for (let i = 0; i < sumArray.length; i++) {
-//     let email = sumArray[i].email;
-//     let sumHours = 0;
-//     for (let j = 0; j < sumArray.length; j++) {
-//       if (email === sumArray[j].email) {
-//         sumHours += sumArray[j].timePerfomed;
-//       }
-//        newArr.push({
-//           email: email,
-//           hours: sumHours,
-//         });
-//     }
-//   }
-//   return newArr;
-// }
+async function overfiveteen(data) {
+  let objArray = await Person.find({ departament: data });
+  let newArray = [];
+  let keyValue = {};
+  for (let counter = 0; counter < objArray.length; counter++) {
+    let obj = objArray[counter];
+    if (!keyValue[obj.email]) {
+      keyValue[obj.email] = 0;
+    }
+    keyValue[obj.email] += obj.timePerfomed;
+  }
+  for (let key in keyValue) {
+    newArray.push({ email: key, timePerfomed: keyValue[key] });
+  }
+  return newArray;
+}
 
 module.exports = {
   overdone,
   undone,
-  //overfiveteen,
-  dailydonetasks,
+  overfiveteen,
+  //dailydonetasks,
 };

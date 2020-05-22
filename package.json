@@ -18,9 +18,11 @@
   },
   "homepage": "https://github.com/amercury/hard-photo-reddit#readme",
   "dependencies": {
+    "chart.js": "^2.9.3",
     "connect-mongodb-session": "^2.3.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-fileupload": "^1.1.7-alpha.3",
     "express-session": "^1.17.1",
     "hbs": "^4.1.1",
     "mongoose": "^5.9.10"
