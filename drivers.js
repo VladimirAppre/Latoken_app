@@ -1,3 +1,4 @@
+const {Person, User} = require('./dataBase/models/schemas');
 function overdone(data) {
   Person.find(
     { deportament: data },

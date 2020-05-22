@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/amercury/hard-photo-reddit#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "connect-mongodb-session": "^2.3.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
